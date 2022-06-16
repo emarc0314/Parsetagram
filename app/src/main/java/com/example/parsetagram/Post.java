@@ -79,7 +79,7 @@ public class Post extends ParseObject {
         put(KEY_USER, user);
     }
 
-    public List<ParseUser> getLikedBy(){
+    public List<ParseUser> getLikedBy() {
         List<ParseUser> likedBy = getList(KEY_LIKED_BY);
         if(likedBy == null){
             return new ArrayList<>();
@@ -93,7 +93,7 @@ public class Post extends ParseObject {
 
     public String getLikesCount() {
         int likeCount = getLikedBy().size();
-        return (String.valueOf(likeCount)) + (likeCount == 1 ? "like" : "likes");
+        return (String.valueOf(likeCount)) + (likeCount == 1 ? " like" : " likes");
     }
 
     public void unlike() {
@@ -119,11 +119,9 @@ public class Post extends ParseObject {
         List<ParseUser> likedBy = getLikedBy();
         for (int i = 0; i < likedBy.size(); i++){
             if(likedBy.get(i).hasSameId(ParseUser.getCurrentUser())){
-                likedBy.remove(i);
+                return true;
             }
         }
-        setLikedBy(likedBy);
-        saveInBackground();
         return false;
     }
 }

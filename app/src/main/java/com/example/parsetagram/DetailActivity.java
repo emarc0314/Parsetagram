@@ -60,6 +60,8 @@ public class DetailActivity extends AppCompatActivity {
         });
     }
 
+    ImageButton ibHeart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +70,7 @@ public class DetailActivity extends AppCompatActivity {
         TextView tvDate = findViewById(R.id.tvDate);
         ImageView ivPhoto = findViewById(R.id.ivPic);
         TextView tvCaption = findViewById(R.id.tvCaption);
-        ImageButton ibHeart = findViewById(R.id.ibPostLikes);
+        ibHeart = findViewById(R.id.ibPostLikes);
         TextView tvLikes = findViewById(R.id.tvPostLikes);
         rvComments = findViewById(R.id.rvComments);
         adapter = new CommentsAdapter();
@@ -91,16 +93,7 @@ public class DetailActivity extends AppCompatActivity {
                     ibHeart.setBackgroundResource(R.drawable.ufi_heart_active);
                 }
 
-                if(likedBy.contains(ParseUser.getCurrentUser())) {
-                    likedBy.remove(ParseUser.getCurrentUser());
-                    //TODO: CHANGE THE UNLIKE IMAGE
-                    ibHeart.setBackgroundResource(R.drawable.ufi_heart);
-
-                } else {
-                    likedBy.add(ParseUser.getCurrentUser());
-                }
-                post.setLikedBy(likedBy);
-                post.saveInBackground(); //uploads new value back to parse
+                tvLikes.setText(post.getLikesCount());
             }
         });
         ImageButton ibComment = findViewById(R.id.ibPostComments);
@@ -119,7 +112,7 @@ public class DetailActivity extends AppCompatActivity {
         Date createdAt = post.getCreatedAt();
         String timeago = Post.calculateTimeAgo(createdAt);
 
-        if(post.getLikedBy().contains(ParseUser.getCurrentUser())){
+        if(post.isLikedByCurrentUser()) {
             ibHeart.setBackgroundResource(R.drawable.ufi_heart_active);
         } else {
             ibHeart.setBackgroundResource(R.drawable.ufi_heart);
