@@ -52,15 +52,22 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvUsername;
         private TextView tvDescription;
         private ImageView ivImage;
+        private ImageView ivProfile;
 
+        public User user = (User) User.getCurrentUser();
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvUsername = itemView.findViewById(R.id.tvUsername);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             ivImage = itemView.findViewById(R.id.ivImage);
+            ivProfile = itemView.findViewById(R.id.ivProfile);
+
+
             //!!!!!!
             itemView.setOnClickListener(this);
+
+
         }
 
         public void bind(Post post) {
@@ -71,6 +78,21 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
             }
+
+            if(user.getProfilePhoto() != null) {
+                Glide.with(context).load(user.getProfilePhoto().getUrl()).circleCrop().into(ivProfile);
+            }
+
+            ivProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MainActivity activity = (MainActivity)context;
+
+                    activity.goToProfileTab(post.getUser());
+//                    activity.bottomNavigationView.setSelectedItemId(R.id.action_profile);
+                }
+            });
+
         }
 
         @Override
@@ -81,6 +103,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra(Post.class.getSimpleName(), post);
                 context.startActivity(intent);
+
+
             }
         }
     }

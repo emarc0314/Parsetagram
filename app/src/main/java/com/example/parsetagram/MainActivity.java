@@ -3,6 +3,7 @@ package com.example.parsetagram;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -39,20 +40,34 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
-    private BottomNavigationView bottomNavigationView;
+    public BottomNavigationView bottomNavigationView;
+    public Toolbar toolbar;
     final FragmentManager fragmentManager = getSupportFragmentManager();
 
 
-//    @Override
-//    protected void onPostResume() {
-//        super.onPostResume();
-//    }
+    PostsFragment postsFragment = new PostsFragment();
+    ComposeFragment composeFragment = new ComposeFragment();
+    ProfileFragment profileFragment = new ProfileFragment();
+
+
+
+
+    public void goToProfileTab(User user){
+        profileFragment.user = user;
+        profileFragment.displayuserInfo();
+        bottomNavigationView.setSelectedItemId(R.id.action_profile);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        // Remove default title text
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -61,15 +76,15 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_home:
                         //update fragment
-                        fragment = new PostsFragment();
+                        fragment = postsFragment;
                         break;
                         // do something here
                     case R.id.action_compose:
-                        fragment = new ComposeFragment();
+                        fragment = composeFragment;
                         break;
                         // do something here
                     case R.id.action_profile:
-                        fragment = new ComposeFragment();
+                        fragment = profileFragment;
                         break;
 
                         // do something here

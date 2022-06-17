@@ -24,6 +24,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.parsetagram.BaseFragment;
 import com.example.parsetagram.MainActivity;
 import com.example.parsetagram.Post;
 import com.example.parsetagram.R;
@@ -39,16 +40,18 @@ import java.io.File;
  * Use the {@link ComposeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ComposeFragment extends Fragment {
+public class ComposeFragment extends BaseFragment {
+//
+//    public static final String TAG = "ComposeFragment";
+//    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
+//    private File photoFile;
+//    private String photoFileName = "photo.jpg";
 
-    public static final String TAG = "ComposeFragment";
     private EditText etDescription;
     private Button btnSubmit;
     private Button btnTakeImage;
     private ImageView ivPostImage;
-    private File photoFile;
-    private String photoFileName = "photo.jpg";
-    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
+
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -98,24 +101,25 @@ public class ComposeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_compose, container, false);
     }
 
-    private void launchCamera() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Create a File reference for future access
-        photoFile = getPhotoFileUri(photoFileName);
-
-        // wrap File object into a content provider
-        // required for API >= 24
-        // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-        Uri fileProvider = FileProvider.getUriForFile(getContext(), "com.codepath.fileprovider", photoFile);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
-
-        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
-        // So as long as the result is not null, it's safe to use the intent.
-        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
-            // Start the image capture intent to take photo
-            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-        }
-    }
+//    private void launchCamera() {
+//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        // Create a File reference for future access
+//        photoFile = getPhotoFileUri(photoFileName);
+//
+//        // wrap File object into a content provider
+//        // required for API >= 24
+//        // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
+//        Uri fileProvider = FileProvider.getUriForFile(getContext(), "com.codepath.fileprovider", photoFile);
+//        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
+//
+//        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+//        // So as long as the result is not null, it's safe to use the intent.
+//        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+//            // Start the image capture intent to take photo
+//            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+//        }
+//    }
+//
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
