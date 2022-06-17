@@ -17,6 +17,7 @@ import java.util.function.Predicate;
 
 @ParseClassName("Post")
 public class Post extends ParseObject {
+    //rewrite to DESCRIPTION_KEY, etc
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
@@ -99,7 +100,7 @@ public class Post extends ParseObject {
     public void unlike() {
         List<ParseUser> likedBy = getLikedBy();
         for(int i = 0; i < likedBy.size(); i++){
-            if(likedBy.get(i).hasSameId(ParseUser.getCurrentUser())){
+            if(likedBy.get(i).hasSameId(ParseUser.getCurrentUser())) {
                 likedBy.remove(i);
             }
         }

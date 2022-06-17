@@ -112,6 +112,7 @@ public class DetailActivity extends AppCompatActivity {
         Date createdAt = post.getCreatedAt();
         String timeago = Post.calculateTimeAgo(createdAt);
 
+//        if(post.getLikedBy().contains(ParseUser.getCurrentUser())) {
         if(post.isLikedByCurrentUser()) {
             ibHeart.setBackgroundResource(R.drawable.ufi_heart_active);
         } else {
