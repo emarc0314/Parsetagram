@@ -33,8 +33,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="44dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/ivProfilePhoto"
         app:layout_constraintTop_toTopOf="@+id/ivProfilePhoto" />
+
+    <TextView
+        android:id="@+id/tvUsernameFragment2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:text="985"
+        app:layout_constraintStart_toEndOf="@+id/ivProfilePhoto"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsernameFragment3" />
+
+    <TextView
+        android:id="@+id/tvUsernameFragment4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:text="856"
+        app:layout_constraintStart_toEndOf="@+id/ivProfilePhoto"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsernameFragment5" />
+
+    <TextView
+        android:id="@+id/tvUsernameFragment5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="44dp"
+        android:text="followers"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/ivProfilePhoto"
+        app:layout_constraintTop_toTopOf="@+id/ivProfilePhoto" />
+
+    <TextView
+        android:id="@+id/tvUsernameFragment3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="184dp"
+        android:text="following"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/ivProfilePhoto"
+        app:layout_constraintTop_toTopOf="@+id/tvUsernameFragment5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
